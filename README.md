@@ -4,12 +4,11 @@ Create Read Update and Delete framework using JS
  ## Tasks
 
  ### Basic Reqs
-- [x] Where to store data? (localstorage)
-- [x] How to caputure data? (web form)
-- [x] How to modify data? (update action, delete action)
-- [x] How to view data? (style?)
-- [ ] UI/UX considerations (how are we going to use this)
+- [x] Need a way to store data to localstorate? (Create)
+- [x] Ability to capture data that is going to be stored? (input boxes)
+- [x] Way to view data? (Read)
+- [x] Ability to edit data that is inside? (Update, Delete)
+- [ ] UI/UX considerations (what is the optimal experience for the user)
 
- ### Advanced Reqs
-- [ ] update/delete column
-- [ ] button disabling when input values are invalid
+ ### MVP
+ Allow user to add, edit, remove and view songs that are located in local storage, with "key" being the song name, and the "value" being the artist name. 

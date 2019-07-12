@@ -1,11 +1,3 @@
-/*
-
- ### Basic Reqs
-- [ ] Where to store data? (localstorage)
-- [ ] How to modify data? (update action, delete action)
-
-*/
-
 //localStorage functions
 var createItem = function(key, value) {
   return window.localStorage.setItem(key, value);
@@ -28,7 +20,8 @@ var showDatabaseContents = function() {
 
   for (var i = 0; i < window.localStorage.length; i++) {
     var key = window.localStorage.key(i);
-    $('tbody').append(`<tr><td>${key}</td><td>${window.localStorage.getItem(key)}</td></tr>`)
+    var values = JSON.parse(window.localStorage.getItem(key));
+    $('tbody').append(`<tr><td>${key}</td><td>${values[0]}</td><td>${values[1]}</td><td>${values[2]}</td></tr>`)
   }
 }
 
@@ -41,12 +34,15 @@ var getKeyInput = function() {
 }
 
 var getValueInput = function() {
-  return $('.value').val();
+  var values = [$('.value1').val(), $('.value2').val(), $('.value3').val()];
+  return JSON.stringify(values);
 }
 
 var resetInputs = function() {
   $('.key').val('');
-  $('.value').val('');
+  $('.value1').val('');
+  $('.value2').val('');
+  $('.value3').val('');
 }
 
 $(document).ready(function() {
@@ -55,7 +51,7 @@ $(document).ready(function() {
   $('.create').click(function() {
     if (getKeyInput() !== '' && getValueInput() !== '') {
       if (keyExists(getKeyInput())) {
-        if(confirm('key already exists in database, do you want to update instead?')) {
+        if(confirm('song already exists in database, do you want to update the Artist name instead?')) {
           updateItem(getKeyInput(), getValueInput());
           showDatabaseContents();
         }
@@ -65,7 +61,7 @@ $(document).ready(function() {
         resetInputs();
       }
     } else  {
-      alert('key and value must not be blank');
+      alert('song and artist must not be blank');
     }
   });
 
@@ -76,10 +72,10 @@ $(document).ready(function() {
         showDatabaseContents();
         resetInputs();
       } else {
-        alert('key does not exist in database');
+        alert('song does not exist in database');
       }
     } else {
-      alert('key and value must not be blank');
+      alert('song and artist must not be blank');
     }
   });
 
@@ -90,10 +86,10 @@ $(document).ready(function() {
         showDatabaseContents();
         resetInputs();
       } else {
-        alert('key does not exist in database');
+        alert('song does not exist in database');
       }
     } else {
-      alert('key must not be blank');
+      alert('song must not be blank');
     }
   });
 
@@ -102,7 +98,7 @@ $(document).ready(function() {
   })
 
   $('.clear').click(function() {
-    if (confirm('WARNING: Are you sure you want to clear the database? \n                THIS ACTION CANNOT BE UNDONE')) {
+    if (confirm('WARNING: Are you sure you want to clear the playlist? \n                THIS ACTION CANNOT BE UNDONE')) {
       clearDatabase();
       showDatabaseContents();
     }
