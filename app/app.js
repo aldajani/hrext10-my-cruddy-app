@@ -17,7 +17,6 @@ var clearDatabase = function() {
 
 var showDatabaseContents = function() {
   $('tbody').html('');
-
   for (var i = 0; i < window.localStorage.length; i++) {
     var key = window.localStorage.key(i);
     var values = JSON.parse(window.localStorage.getItem(key));
@@ -49,9 +48,9 @@ $(document).ready(function() {
   showDatabaseContents();
 
   $('.create').click(function() {
-    if (getKeyInput() !== '' && getValueInput() !== '') {
+    if (getKeyInput() !== '' && $('.value2').val() !== '' && $('.value3').val() !== '' && $('.value1').val() !== '') {
       if (keyExists(getKeyInput())) {
-        if(confirm('song already exists in database, do you want to update the Artist name instead?')) {
+        if(confirm('song already exists in database, do you want to update the song details instead?')) {
           updateItem(getKeyInput(), getValueInput());
           showDatabaseContents();
         }
@@ -61,12 +60,12 @@ $(document).ready(function() {
         resetInputs();
       }
     } else  {
-      alert('song and artist must not be blank');
+      alert('inputs must not be blank');
     }
   });
 
   $('.update').click(function() {
-    if (getKeyInput() !== '' && getValueInput() !== '') {
+    if (getKeyInput() !== '' && $('.value2').val() !== '' && $('.value3').val() !== '' && $('.value1').val() !== '') {
       if (keyExists(getKeyInput())) {
         updateItem(getKeyInput(), getValueInput());
         showDatabaseContents();
